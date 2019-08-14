@@ -226,9 +226,9 @@
 
     <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="download">
       <div class="w-100">
-        <h2 class="mb-5">Download (COMING SOON)</h2>
-        <button type="button" class="btn btn-danger btn-lg">PDF</button>
-        <button type="button" class="btn btn-primary btn-lg">Microsoft word</button>
+        <h2 class="mb-5">Download</h2>
+        <button type="button" class="btn btn-danger btn-lg" onclick="downloadPdf()">PDF</button>
+        <button type="button" class="btn btn-primary btn-lg" onclick="downloadDocx()">Microsoft word</button>
       </div>
     </section>
 
@@ -252,6 +252,69 @@
 
   <!-- Initialize Firebase -->
   <script src="/__/firebase/init.js"></script>
+
+  <!-- Sweer Alert 2-->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+  <script>
+    function downloadPdf() {
+      Swal.fire({
+        title: 'Submit your email',
+        input: 'email',
+        showCancelButton: true,
+        confirmButtonText: 'Download',
+        preConfirm: (login) => {
+          return fetch('https://my-cv-api-spontaneous-antelope.cfapps.io/api/v1/resumes/cv-damian-lisas.pdf')
+          .then(response => {
+            if(!response.ok) {
+              throw new Error(response.statusText)
+            }
+            return response.blob()
+          })
+          .catch(error => {
+            Swal.showValidationMessage(
+              `Request failed: ${error}`
+            )
+          })
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((blob) => {
+        var link = document.createElement('a');
+        link.href = window.URL.createObjectURL(new Blob([blob.value], {type: 'application/pdf'}));
+        link.download = "DamianLisasCV.pdf";
+        link.click();
+      })
+    }
+
+    function downloadDocx() {
+      Swal.fire({
+        title: 'Submit your email',
+        input: 'email',
+        showCancelButton: true,
+        confirmButtonText: 'Download',
+        preConfirm: (login) => {
+          return fetch('https://my-cv-api-spontaneous-antelope.cfapps.io/api/v1/resumes/cv-damian-lisas.docx')
+          .then(response => {
+            if(!response.ok) {
+              throw new Error(response.statusText)
+            }
+            return response.blob()
+          })
+          .catch(error => {
+            Swal.showValidationMessage(
+              `Request failed: ${error}`
+            )
+          })
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((blob) => {
+        var link = document.createElement('a');
+        link.href = window.URL.createObjectURL(new Blob([blob.value], {type: 'application/docx'}));
+        link.download = "DamianLisasCV.docx";
+        link.click();
+      })
+    }
+  </script>
 
 </body>
 

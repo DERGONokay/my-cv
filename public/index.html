@@ -249,8 +249,8 @@
     <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="download">
       <div class="w-100">
         <h2 class="mb-5">Download</h2>
-        <button type="button" class="btn btn-danger btn-lg" onclick="downloadFile('pdf')">PDF</button>
-        <button type="button" class="btn btn-primary btn-lg" onclick="downloadFile('docx')">Microsoft word</button>
+        <button type="button" class="btn btn-danger btn-lg" onclick="outOfOrder()">PDF</button>
+        <button type="button" class="btn btn-primary btn-lg" onclick="outOfOrder()">Microsoft word</button>
       </div>
     </section>
 
@@ -308,6 +308,10 @@
           link.click();
         }
       })
+    }
+
+    function outOfOrder() {
+      Swal.fire('Out of order :(', 'This service was available during the PCF free trial, now I have no host for my API. <b>#SAD</b>', 'error')
     }
   </script>
 

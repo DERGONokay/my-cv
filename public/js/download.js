@@ -4,10 +4,9 @@ $(document).ready(function() {
 
         fetch(url)
         .then(response => {
-            console.log(response)
-            console.log(response.body)
-            console.log(response.status)
-            console.log(response.text)
+            response.json().then(json => {
+                console.log(json)
+            })
         })
 
     })

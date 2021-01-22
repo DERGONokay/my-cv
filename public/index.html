@@ -21,6 +21,9 @@
   <!-- Custom styles for this template -->
   <link href="css/resume.min.css" rel="stylesheet">
 
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 
 <body id="page-top">
@@ -261,7 +264,7 @@
     <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="download">
       <div class="w-100">
         <h2 class="mb-5">Download</h2>
-        <button type="button" class="btn btn-danger btn-lg" onclick="outOfOrder()">PDF</button>
+        <button id="download-pdf" type="button" class="btn btn-danger btn-lg">PDF</button>
         <button type="button" class="btn btn-primary btn-lg" onclick="outOfOrder()">Microsoft word</button>
       </div>
     </section>
@@ -290,43 +293,8 @@
   <!-- Sweer Alert 2-->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
-  <script>
-    function downloadFile(extension) {
-      Swal.fire({
-        title: 'Submit your email',
-        input: 'email',
-        showCancelButton: true,
-        confirmButtonText: 'Download',
-        preConfirm: (email) => {
-          return fetch(`https://my-cv-api-spontaneous-antelope.cfapps.io/api/v1/resumes/cv-damian-lisas.${extension}?email=${email}`)
-          .then(response => {
-            if(!response.ok) {
-              throw new Error(response.statusText)
-            }
-            return response.blob()
-          })
-          .catch(error => {
-            Swal.showValidationMessage(
-              `Request failed: ${error}`
-            )
-          })
-        },
-        allowOutsideClick: () => !Swal.isLoading()
-      }).then((blob) => {
-        if(blob.value) {
-          var link = document.createElement('a');
-          link.href = window.URL.createObjectURL(new Blob([blob.value], {type: 'application/pdf'}));
-          link.download = `DamianLisasCV.${extension}`;
-          link.click();
-        }
-      })
-    }
-
-    function outOfOrder() {
-      Swal.fire('Out of order :(', 'This service was available during the PCF free trial, now I have no host for my API. <b>#SAD</b> ' +
-                'But! It will be returning pretty soon thanks to the new skills I leart since I first created this webpage!', 'error')
-    }
-  </script>
+  <!-- Download -->
+  <script src="js/download.js"></script>
 
 </body>
 

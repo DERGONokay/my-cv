@@ -20,7 +20,7 @@ $(document).ready(function() {
             .then(response => {
                 response.json().then(downloadResponse => {
                     if(downloadResponse.url) {
-                        window.location = downloadResponse.url
+                        window.open(downloadResponse.url, "_balnk")
                     } else {
                         Swal.fire({
                             icon: 'error',
@@ -56,7 +56,7 @@ $(document).ready(function() {
             .then(response => {
                 response.json().then(downloadResponse => {
                     if(downloadResponse.url) {
-                        window.location = downloadResponse.url
+                        window.open(downloadResponse.url, "_balnk")
                     } else {
                         Swal.fire({
                             icon: 'error',

@@ -5,7 +5,8 @@ $(document).ready(function() {
         fetch(url)
         .then(response => {
             console.log(response)
-            window.location = response.body
+            console.log(response.body)
+            console.log(response.status)
         })
 
     })

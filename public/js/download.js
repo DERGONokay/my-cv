@@ -14,7 +14,11 @@ $(document).ready(function() {
                 if(email) {
                     fetch(`https://my-curriculum-api.herokuapp.com/api/download/register`, {
                         method: "POST",
-                        body: JSON.stringify({email: email, docRype: "pdf"})
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({email: email, docType: "pdf"})
                     })
                 }
             }

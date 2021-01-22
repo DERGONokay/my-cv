@@ -6,7 +6,10 @@ $(document).ready(function() {
             title: "Submit your email",
             text: "This is optional ;)",
             confirmButtonText: "There you go",
+            showCancelButton: true,
             cancelButtonText: "Nah",
+            showLoaderOnConfirm: true,
+            input: "email",
             preConfirm: (email) => {
                 if(email) {
                     fetch(`https://my-curriculum-api.herokuapp.com/api/download/register`, {
